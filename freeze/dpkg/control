@@ -41,8 +41,6 @@ Depends: libzeroc-freeze3.7 (= ${binary:Version}),
          libzeroc-ice-dev (>= 3.7.0),
          libzeroc-ice-dev (<< 3.8.0),
          zeroc-freeze-compilers (= ${binary:Version}),
-         zeroc-ice-slice (>= 3.7.0),
-         zeroc-ice-slice (<< 3.8.0),
          ${misc:Depends},
          ${shlibs:Depends}
 Description: libraries and headers for developing Freeze applications in C++
