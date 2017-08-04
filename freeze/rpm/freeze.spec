@@ -56,7 +56,7 @@ Vendor: ZeroC, Inc.
 URL: https://zeroc.com/
 Source0: https://github.com/zeroc-ice/freeze/archive/%{archive_tag}/%{name}-%{version}.tar.gz
 Source1: https://github.com/zeroc-ice/ice/archive/%{archive_tag}/%{name}-ice-%{version}.tar.gz
-BuildRequires: pkgconfig(expat), pkgconfig(mcpp), pkgconfig(openssl), %{bzip2devel}, %{libdbcxxdevel}
+BuildRequires: pkgconfig(expat), pkgconfig(mcpp), pkgconfig(openssl), libice-c++-devel, %{bzip2devel}, %{libdbcxxdevel}
 %description
 Not used
 
@@ -126,8 +126,8 @@ mv ice-%{archive_dir_suffix} ice
 export CXXFLAGS="%{optflags}"
 export LDFLAGS="%{?__global_ldflags}"
 
-make -C ice/cpp %{makebuildopts} IceXML
-make -C cpp %{makebuildopts} srcs
+make -C ice/cpp %{makebuildopts} IceUtil Slice
+make -C cpp %{makebuildopts} srcs ICE_BIN_DIST=all
 
 %install
 make -C cpp %{makeinstallopts} install

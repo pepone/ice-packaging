@@ -9,6 +9,7 @@ Build-Depends: debhelper (>= 9),
                libmcpp-dev,
                libssl-dev,
                libdb++-dev,
+               libzeroc-ice-dev,
                locales-all
 Standards-Version: 3.9.8
 Homepage: https://zeroc.com
