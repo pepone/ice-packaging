@@ -42,10 +42,10 @@ endif
 
 override_dh_auto_build-arch:
 	$(MAKE) $(MAKEOPTS) -C ice/cpp IceUtil Slice
-	$(MAKE) $(MAKEOPTS) -C cpp $(BUILDTARGET) ICE_BIN_DIST=all
+	$(MAKE) $(MAKEOPTS) -C cpp ICE_BIN_DIST=all $(BUILDTARGET)
 
 override_dh_auto_install-arch:
-	$(MAKE) $(MAKEOPTS) -C cpp $(BUILDTARGET) install
+	$(MAKE) $(MAKEOPTS) -C cpp ICE_BIN_DIST=all install
 
 override_dh_auto_clean-arch:
 	$(MAKE) $(MAKEOPTS) -C ice/cpp distclean
@@ -53,7 +53,7 @@ override_dh_auto_clean-arch:
 
 override_dh_auto_test-arch:
 ifeq ($(filter nocheck notest,$(DEB_BUILD_OPTIONS)),)
-	-$(MAKE) $(MAKEOPTS) -C cpp test
+	-$(MAKE) $(MAKEOPTS) -C cpp ICE_BIN_DIST=all test
 endif
 
 override_dh_clean:

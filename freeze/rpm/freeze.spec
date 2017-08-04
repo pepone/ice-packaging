@@ -127,10 +127,10 @@ export CXXFLAGS="%{optflags}"
 export LDFLAGS="%{?__global_ldflags}"
 
 make -C ice/cpp %{makebuildopts} IceUtil Slice
-make -C cpp %{makebuildopts} srcs ICE_BIN_DIST=all
+make -C cpp %{makebuildopts} ICE_BIN_DIST=all srcs
 
 %install
-make -C cpp %{makeinstallopts} install
+make -C cpp %{makeinstallopts} ICE_BIN_DIST=all install
 
 #
 # libfreezeM.m-c++ package
