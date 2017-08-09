@@ -14,7 +14,7 @@
    # git_tag_version is the git tag vX.Y.Z[...] less the v prefix
    # if not defined, we default to the version provided below
    %{!?git_tag_version:%define git_tag_version 3.7.0}
-   %define archive_tag v%{git_tag_version}
+   %define archive_tag freeze-v%{git_tag_version}
    %define archive_dir_suffix %{git_tag_version}
 %endif
 
@@ -55,7 +55,7 @@ License: GPLv2
 Vendor: ZeroC, Inc.
 URL: https://zeroc.com/
 Source0: https://github.com/zeroc-ice/freeze/archive/%{archive_tag}/%{name}-%{version}.tar.gz
-Source1: https://github.com/zeroc-ice/ice/archive/%{archive_tag}/%{name}-ice-%{version}.tar.gz
+Source1: https://github.com/zeroc-ice/ice/archive/v3.7.0/ice-3.7.0.tar.gz
 BuildRequires: pkgconfig(expat), pkgconfig(mcpp), pkgconfig(openssl), libice-c++-devel, %{bzip2devel}, %{libdbcxxdevel}
 %description
 Not used
@@ -120,7 +120,7 @@ Freeze provides persistent storage for Ice objects.
 %prep
 %setup -q -n freeze-%{archive_dir_suffix} -a 1
 rmdir ice
-mv ice-%{archive_dir_suffix} ice
+mv ice-3.7.0 ice
 
 %build
 # recommended flags for optimized hardened build
