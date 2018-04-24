@@ -1,6 +1,6 @@
 # **********************************************************************
 #
-# Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
+# Copyright (c) 2003-2018 ZeroC, Inc. All rights reserved.
 #
 # **********************************************************************
 
@@ -13,7 +13,7 @@
 %else
    # git_tag_version is the git tag vX.Y.Z[...] less the v prefix
    # if not defined, we default to the version provided below
-   %{!?git_tag_version:%define git_tag_version 3.7.0}
+   %{!?git_tag_version:%define git_tag_version 3.7.1}
    %define archive_tag v%{git_tag_version}
    %define archive_dir_suffix %{git_tag_version}
 %endif
@@ -55,7 +55,7 @@
 %define makeinstallopts CONFIGS="shared cpp11-shared" PYTHON=%{pythonname} OPTIMIZE=yes V=1 %{runpath} DESTDIR=%{buildroot} prefix=%{_prefix} install_bindir=%{_bindir} install_libdir=%{_libdir} install_slicedir=%{_datadir}/ice/slice install_includedir=%{_includedir} install_mandir=%{_mandir} install_configdir=%{_datadir}/ice install_javadir=%{_javadir} install_phplibdir=%{phplibdir} install_phpdir=%{phpdir} install_pythondir=%{pythondir}
 
 Name: %{?nameprefix}ice
-Version: 3.7.0
+Version: 3.7.1
 Summary: Comprehensive RPC framework with support for C++, Java, JavaScript, Python and more.
 Release: 1%{?dist}
 %if "%{?ice_license}"
@@ -460,9 +460,6 @@ export LDFLAGS="%{?__global_ldflags}"
 # Cleanup extra files
 rm -f %{buildroot}%{_bindir}/slice2confluence
 
-# TODO: keep with Python >= 3.5
-rm -f %{buildroot}%{pythondir}/Ice/IceFuture.py
-
 %ifarch x86_64
 
 #
@@ -676,6 +673,8 @@ exit 0
 %{_mandir}/man1/slice2java.1*
 %{_bindir}/slice2js
 %{_mandir}/man1/slice2js.1*
+%{_bindir}/slice2matlab
+%{_mandir}/man1/slice2matlab.1*
 %{_bindir}/slice2objc
 %{_mandir}/man1/slice2objc.1*
 %{_bindir}/slice2php
@@ -912,6 +911,9 @@ exit 0
 %endif #x86_64
 
 %changelog
+* Fri Apr 13 2018 Bernard Normier <bernard@zeroc.com> 3.7.1
+- Updates for the 3.7.1 release, see ice/CHANGELOG-3.7.md.
+
 * Fri Jul 21 2017 Bernard Normier <bernard@zeroc.com> 3.7.0
 - Updates for the 3.7.0 release, see ice/CHANGELOG-3.7.md.
 

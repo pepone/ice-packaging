@@ -39,6 +39,8 @@ sliceSrcs = ["Checksum.cpp", "FileTracker.cpp", "Grammar.cpp", "MD5.cpp",
 # set include_package_data=True.
 #
 packages=['Glacier2', 'Ice', 'IceBox', 'IceGrid', 'IceMX', 'IcePatch2', 'IceStorm', 'slice']
+if sys.version_info[:2] >= (3, 5):
+    packages += ['Ice.Py3']
 package_dir={'' : 'lib'}
 package_data={'' : ['*.ice']}
 
@@ -74,6 +76,8 @@ elif platform == 'win32':
     define_macros.append(('_WIN32_WINNT', '0x601'))
     include_dirs.append('src/ice/bzip2')
     extra_compile_args.append('/EHsc')
+    extra_compile_args.append('/wd4018')
+    extra_compile_args.append('/wd4146')
     extra_compile_args.append('/wd4244')
     extra_compile_args.append('/wd4250')
     extra_compile_args.append('/wd4251')
@@ -164,7 +168,7 @@ with open('README.rst') as file:
 setup(
     name='zeroc-ice',
 
-    version='3.7.0',
+    version='3.7.1',
 
     description="Ice is a comprehensive RPC framework with support for Python, C++, .NET, Java, JavaScript and more.",
 
@@ -217,6 +221,7 @@ setup(
     package_dir = package_dir,
     package_data = package_data,
     include_package_data = True,
+    exclude_package_data={'slice': ['IceDiscovery/*.ice', 'IceLocatorDiscovery/*.ice']},
     py_modules = ["slice2py"],
     entry_points = {
         'console_scripts': ['slice2py=slice2py:main'],
